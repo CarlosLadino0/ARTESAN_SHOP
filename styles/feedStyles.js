@@ -18,6 +18,12 @@ export default StyleSheet.create({
     fontWeight: "bold" 
   },
 
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f9f9f9',
+    paddingVertical: 12
+  },
+  
   botonCarrito: { 
     padding: 10,
     backgroundColor: "#ddd",

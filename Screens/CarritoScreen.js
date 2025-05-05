@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, SafeAreaView } from "react-native";
 import styles from "../styles/detallesStyles";
 
 const CarritoScreen = ({ navigation, carrito, setCarrito }) => {
@@ -36,6 +36,7 @@ const CarritoScreen = ({ navigation, carrito, setCarrito }) => {
   };
 
   return (
+    <SafeAreaView style={{ flex: 1, paddingVertical: 12 }}>
     <View style={styles.container}>
       <View style={styles.encabezado}>
         <Text style={styles.titulo}>Carrito de Compras</Text>
@@ -84,6 +85,7 @@ const CarritoScreen = ({ navigation, carrito, setCarrito }) => {
         <Text style={styles.textoBotonVolver}>Volver</Text>
       </TouchableOpacity>
     </View>
+    </SafeAreaView>
   );
 };
 

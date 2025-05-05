@@ -1,26 +1,11 @@
-import React, { useContext, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import React, { useContext } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AuthContext } from "../context/Auth";
 import { useNavigation } from "@react-navigation/native";
 
 const PerfilScreen = () => {
-  const { usuario, login, logout } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { usuario, logout } = useContext(AuthContext);
   const navigation = useNavigation();
-
-  const handleLogin = async () => {
-    if (!email || !password) {
-      return Alert.alert("Error", "Por favor completa todos los campos");
-    }
-
-    const success = await login(email, password);
-    if (!success) {
-      Alert.alert("Error", "Credenciales incorrectas");
-    } else {
-      navigation.navigate("Feed");
-    }
-  };
 
   const handleLogout = () => {
     logout();
@@ -37,24 +22,18 @@ const PerfilScreen = () => {
         </>
       ) : (
         <>
-          <Text style={styles.titulo}>Iniciar Sesión</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Correo electrónico"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Contraseña"
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-          />
-          <TouchableOpacity style={styles.boton} onPress={handleLogin}>
-            <Text style={styles.textoBoton}>Ingresar</Text>
+          <Text style={styles.titulo}>Bienvenido</Text>
+          <TouchableOpacity
+            style={styles.boton}
+            onPress={() => navigation.navigate("Login")}
+          >
+            <Text style={styles.textoBoton}>Iniciar Sesión</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.botonSecundario}
+            onPress={() => navigation.navigate("Registro")}
+          >
+            <Text style={styles.textoBotonSecundario}>Registrarse</Text>
           </TouchableOpacity>
         </>
       )}
@@ -86,15 +65,6 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: "center",
   },
-  input: {
-    backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    fontSize: 16,
-  },
   boton: {
     backgroundColor: "#8e44ad",
     paddingVertical: 16,
@@ -104,6 +74,19 @@ const styles = StyleSheet.create({
   },
   textoBoton: {
     color: "#fff",
+    fontWeight: "600",
+    fontSize: 16,
+  },
+  botonSecundario: {
+    borderWidth: 2,
+    borderColor: "#8e44ad",
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 12,
+  },
+  textoBotonSecundario: {
+    color: "#8e44ad",
     fontWeight: "600",
     fontSize: 16,
   },
