@@ -1,49 +1,51 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
 
 export const ProductosContext = createContext({
-    productos: [],
-    isLoading: true
+  productos: [],
+  isLoading: true,
+  fetchProductos: () => {},
 });
 
 const ProductosContextProvider = ({ children }) => {
-    const [productos, setProductos] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [productos, setProductos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchProductos = async () => {
-            try {
-                const response = await axios.get(`${BACKEND_URL}/productos.json`);
-                const lista = [];
+  const fetchProductos = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(`${BACKEND_URL}/productos.json`);
+      const lista = [];
 
-                for (const key in response.data) {
-                    const producto = response.data[key];
-                    lista.push({
-                        id: key,
-                        nombre: producto.nombre,
-                        categoria: producto.categoria,
-                        precio: producto.precio,
-                        imagen: producto.imagen,
-                    });
-                }
+      for (const key in response.data) {
+        const producto = response.data[key];
+        lista.push({
+          id: key,
+          nombre: producto.nombre,
+          categoria: producto.categoria,
+          precio: producto.precio,
+          imagen: producto.imagen,
+        });
+      }
 
-                setProductos(lista);
-            } catch (error) {
-                console.error("Error al obtener productos:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+      setProductos(lista);
+    } catch (error) {
+      console.error("Error al obtener productos:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
-        fetchProductos();
-    }, []);
+  useEffect(() => {
+    fetchProductos();
+  }, [fetchProductos]);
 
-    return (
-        <ProductosContext.Provider value={{ productos, isLoading }}>
-            {children}
-        </ProductosContext.Provider>
-    );
+  return (
+    <ProductosContext.Provider value={{ productos, isLoading, fetchProductos }}>
+      {children}
+    </ProductosContext.Provider>
+  );
 };
 
 export default ProductosContextProvider;

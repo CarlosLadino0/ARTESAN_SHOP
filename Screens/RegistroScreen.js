@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   boton: {
-    backgroundColor: "#28a745",
+    backgroundColor: "#8e44ad",
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: "center",

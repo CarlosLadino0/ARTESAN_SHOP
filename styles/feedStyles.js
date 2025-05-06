@@ -30,6 +30,20 @@ export default StyleSheet.create({
     borderRadius: 5 
   },
 
+  botonVender: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    backgroundColor: "#8e44ad",
+    borderRadius: 8,
+    marginRight: 8,
+  },
+  
+  textoVender: {
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "600",
+  },
+  
   textoCarrito: { 
     fontSize: 16 
   },

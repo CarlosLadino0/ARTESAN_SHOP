@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   botonComprar: {
-    backgroundColor: "#ff5733",
+    backgroundColor: "#8e44ad",
     padding: 10,
     borderRadius: 5,
     alignItems: "center",

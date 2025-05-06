@@ -8,6 +8,7 @@ import CarritoScreen from "./Screens/CarritoScreen";
 import CategoriasScreen from "./Screens/CategoriasScreen";
 import PerfilScreen from "./Screens/PerfilScreen";
 import LoginScreen from "./Screens/LoginScreen";    
+import VenderProductoScreen from "./Screens/VenderProductoScreen";
 import RegistroScreen from "./Screens/RegistroScreen";   
 import ProductosContextProvider from "./context/ProductosContext";
 import AuthProvider from "./context/Auth";
@@ -66,6 +67,7 @@ const App = () => {
             </Stack.Screen>
             <Stack.Screen name="Registro" component={RegistroScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="VenderProducto" component={VenderProductoScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </AuthProvider>

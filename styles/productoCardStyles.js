@@ -35,7 +35,7 @@ export default StyleSheet.create({
     marginVertical: 5,
   },
   botonComprar: {
-    backgroundColor: "#28a745",
+    backgroundColor: "#8e44ad",
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 5,
